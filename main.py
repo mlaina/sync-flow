@@ -26,6 +26,9 @@ api = tweepy.Client(
     consumer_secret=os.getenv('TWITTER_API_SECRET'),
 )
 
+
+print(os.getenv('TWITTER_API_KEY'))
+
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 creds_json = os.getenv('GOOGLE_SHEETS_CREDS')
