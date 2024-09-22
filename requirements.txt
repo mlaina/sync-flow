@@ -1,0 +1,3 @@
+tweepy
+gspread
+oauth2client
