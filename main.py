@@ -32,6 +32,7 @@ print(os.getenv('TWITTER_API_KEY'))
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 creds_json = os.getenv('GOOGLE_SHEETS_CREDS')
+print(f"GOOGLE_SHEETS_CREDS: {creds_json}")
 creds_dict = json.loads(creds_json)
 
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
