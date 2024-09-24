@@ -3,7 +3,6 @@ import tweepy
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import json
-import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -41,9 +40,21 @@ worksheet = sheet.sheet1
 
 records = worksheet.get_all_records()
 
+empty_posted_records = [record for record in records if record['Posted'] == '']
 
-post_result = api.create_tweet(text='que pasa mufasa :)')
+if empty_posted_records:
+    index = records.index(empty_posted_records[0])
+    text = empty_posted_records[0]['Title'] + '. ' + str(empty_posted_records[0]['Period']) + ' - ' + empty_posted_records[0]['Story']
+    
+    post_result = api.create_tweet(text=text)
+    
+    tweet_id = post_result.data['id']
+    print(f"Tweet publicado con ID: {tweet_id}")
+    
+    worksheet.update_cell(index + 2, 9, "Yes")
+    worksheet.update_cell(index + 2, 10, tweet_id)
 
-print(post_result)
+else:
+    print("No se encontró ningún registro con 'Posted' vacío.")
 
 
