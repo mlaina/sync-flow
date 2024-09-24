@@ -29,3 +29,4 @@ jobs:
         GOOGLE_SHEETS_CREDS: ${{ secrets.GOOGLE_SHEETS_CREDS }}
       run: |
         python main.py
+     environment: e-legacy
