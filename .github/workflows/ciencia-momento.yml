@@ -1,8 +1,8 @@
-name: e-legacy
+name: ciencia-momento
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -31,4 +31,4 @@ jobs:
         GOOGLE_SHEETS_CREDS: ${{ secrets.GOOGLE_SHEETS_CREDS }}
       run: |
         python main.py
-    environment: e-legacy
+    environment: ciencia-momento
