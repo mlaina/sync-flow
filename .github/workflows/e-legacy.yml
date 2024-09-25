@@ -2,7 +2,7 @@ name: e-legacy
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "/6 * * * *"
   workflow_dispatch:
 
 jobs:
