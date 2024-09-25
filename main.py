@@ -44,7 +44,29 @@ empty_posted_records = [record for record in records if record['Posted'] == '']
 
 if empty_posted_records:
     index = records.index(empty_posted_records[0])
-    text = empty_posted_records[0]['Title'] + '. ' + str(empty_posted_records[0]['Period']) + ' - ' + empty_posted_records[0]['Story']
+    text = (
+         str(empty_posted_records[0]['Title']) + '. ' 
+        + str(empty_posted_records[0]['Period']) + ' - ' 
+        + str(empty_posted_records[0]['Story']) + ' ' 
+        + str(empty_posted_records[0]['Data']) + ' ' 
+        + str(empty_posted_records[0]['Conclusion']) + ' ' 
+        + str(empty_posted_records[0]['Hashtags'])
+    )
+    if len(text) > 280:
+        text = (
+         str(empty_posted_records[0]['Title']) + '. ' 
+        + str(empty_posted_records[0]['Period']) + ' - ' 
+        + str(empty_posted_records[0]['Story']) + ' ' 
+        + str(empty_posted_records[0]['Conclusion']) + ' ' 
+        + str(empty_posted_records[0]['Hashtags'])
+    )
+    if len(text) > 280:
+        text = (
+         str(empty_posted_records[0]['Title']) + '. ' 
+        + str(empty_posted_records[0]['Period']) + ' - ' 
+        + str(empty_posted_records[0]['Story']) + ' '
+        + str(empty_posted_records[0]['Hashtags'])
+    )
     
     post_result = api.create_tweet(text=text)
     
