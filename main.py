@@ -43,6 +43,8 @@ records = worksheet.get_all_records()
 # Filtrar los registros que no han sido posteados
 empty_posted_records = [record for record in records if record['Posted'] == '']
 
+print(empty_posted_records)
+
 # Si hay registros sin postear
 if empty_posted_records:
     # Encontrar el primer ID sin postear
@@ -59,33 +61,13 @@ if empty_posted_records:
         if i == 0:
             # Para el primer tweet: incluir toda la información
             text = (
-                str(tweet['Title']) + '. '
-                + str(tweet['Period']) + ' - '
-                + str(tweet['Story']) + ' '
-                + str(tweet['Data']) + ' '
-                + str(tweet['Conclusion']) + ' '
+                str(tweet['Text']) + ' '
                 + str(tweet['Hashtags'])
             )
             
-            # Acortar si es necesario
-            if len(text) > 280:
-                text = (
-                    str(tweet['Title']) + '. '
-                    + str(tweet['Period']) + ' - '
-                    + str(tweet['Story']) + ' '
-                    + str(tweet['Conclusion']) + ' '
-                    + str(tweet['Hashtags'])
-                )
-            if len(text) > 280:
-                text = (
-                    str(tweet['Title']) + '. '
-                    + str(tweet['Period']) + ' - '
-                    + str(tweet['Story']) + ' '
-                    + str(tweet['Hashtags'])
-                )
         else:
             # Para los tweets en el hilo: solo incluir la columna 'Story'
-            text = str(tweet['Story'])
+            text = str(tweet['Text'])
         
         # Publicar el tweet
         if first_tweet_id is None:
@@ -101,8 +83,8 @@ if empty_posted_records:
         print(f"Tweet publicado con ID: {tweet_id}")
         
         # Actualizar el registro en la hoja
-        worksheet.update_cell(index + 2, 9, "Yes")  # Columna "Posted"
-        worksheet.update_cell(index + 2, 10, tweet_id)  # Columna "Tweet ID"
+        worksheet.update_cell(index + 2, 5, "Yes")  # Columna "Posted"
+        worksheet.update_cell(index + 2, 6, tweet_id)  # Columna "Tweet ID"
         
         # Esperar 3 segundos antes de publicar el siguiente tweet en el hilo
         time.sleep(3)
