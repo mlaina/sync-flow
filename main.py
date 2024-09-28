@@ -43,7 +43,6 @@ records = worksheet.get_all_records()
 # Filtrar los registros que no han sido posteados
 empty_posted_records = [record for record in records if record['Posted'] == '']
 
-print(empty_posted_records)
 
 # Si hay registros sin postear
 if empty_posted_records:
